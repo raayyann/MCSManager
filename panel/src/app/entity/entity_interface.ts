@@ -38,6 +38,7 @@ export interface ICompleteUser {
 export interface IRemoteService {
   uuid?: string;
   ip?: string;
+  secure?: boolean;
   port?: number;
   prefix?: string;
   remarks?: string;
@@ -47,6 +48,7 @@ export interface IRemoteService {
 // @Entity
 export class RemoteServiceConfig {
   public ip = "";
+  public secure = false;
   public port = 24444;
   public prefix = "";
   public remarks = "";

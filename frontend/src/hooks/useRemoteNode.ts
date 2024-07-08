@@ -9,6 +9,7 @@ import {
 
 export interface RemoteNodeDetail {
   ip: string;
+  secure: boolean;
   port: number;
   prefix: string;
   remarks: string;

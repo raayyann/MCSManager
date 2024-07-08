@@ -113,6 +113,7 @@ export interface IPanelOverviewRemoteResponse {
   }[];
   uuid: string;
   ip: string;
+  secure: boolean;
   port: number;
   prefix: string;
   available: boolean;

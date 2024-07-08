@@ -84,6 +84,7 @@ router.get("/remote_services", permission({ level: ROLE.ADMIN }), async (ctx) =>
     result.push({
       uuid: remoteService.uuid,
       ip: remoteService.config.ip,
+      secure: remoteService.config.secure,
       port: remoteService.config.port,
       prefix: remoteService.config.prefix,
       available: remoteService.available,
@@ -105,8 +106,9 @@ router.post(
     // do asynchronous registration
     const instance = await RemoteServiceSubsystem.registerRemoteService({
       apiKey: parameter.apiKey,
-      port: parameter.port,
+      port: parameter.secure ? 443 : parameter.port,
       ip: parameter.ip,
+      secure: parameter.secure,
       prefix: parameter.prefix ?? "",
       remarks: parameter.remarks ?? ""
     });
@@ -125,8 +127,9 @@ router.put(
     const parameter = ctx.request.body;
     if (!RemoteServiceSubsystem.services.has(uuid)) throw new Error("Instance does not exist");
     await RemoteServiceSubsystem.edit(uuid, {
-      port: parameter.port,
+      port: parameter.secure ? 443 : parameter.port,
       ip: parameter.ip,
+      secure: parameter.secure,
       prefix: parameter.prefix ?? "",
       apiKey: parameter.apiKey,
       remarks: parameter.remarks

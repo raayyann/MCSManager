@@ -1366,6 +1366,8 @@
   "TXT_CODE_93f9b02a": "Daemon IP",
   "TXT_CODE_be7a689a": "It must be an Public IP/Domain or 'localhost'. Otherwise, the daemon will fail to connect.",
   "TXT_CODE_c82a51b0": "For example, 'mcsmanager.com' or '43.123.211.12'.",
+  "TXT_CODE_k3k11h2r": "Secure Mode",
+  "TXT_CODE_teznq2dx": "Enable this if your daemon server uses SSL.",
   "TXT_CODE_4a6bf8c6": "Daemon Port",
   "TXT_CODE_df455795": "By default 24444。",
   "TXT_CODE_300c2ff4": "Daemon Key",

@@ -1367,6 +1367,8 @@
   "TXT_CODE_93f9b02a": "远程节点 IP 地址",
   "TXT_CODE_be7a689a": "必须使用外网地址或 localhost 地址，否则将导致远程实例无法连接",
   "TXT_CODE_c82a51b0": "可以是域名或者 IP 地址，例如 mcsmanager.com，43.123.211.12",
+  "TXT_CODE_k3k11h2r": "安全模式",
+  "TXT_CODE_teznq2dx": "如果您的守护进程服务器使用SSL，请启用此选项。",
   "TXT_CODE_4a6bf8c6": "远程节点端口",
   "TXT_CODE_df455795": "默认情况下是 24444。",
   "TXT_CODE_300c2ff4": "远程节点密钥",

@@ -17,12 +17,14 @@ const openDialog = (data?: RemoteNodeDetail, uuid?: string) => {
     dialog.uuid = uuid;
     dialog.data = {
       ...data,
+      port: data.secure ? 24444 : data.port,
       apiKey: data.apiKey || ""
     };
   } else {
     editMode.value = false;
     dialog.data = {
       ip: "",
+      secure: false,
       port: 24444,
       prefix: "",
       remarks: "",
@@ -39,6 +41,7 @@ const dialog = reactive({
   uuid: "",
   data: {
     ip: "",
+    secure: false,
     port: 24444,
     prefix: "",
     remarks: "",
@@ -57,6 +60,7 @@ const dialog = reactive({
   clear: () => {
     dialog.data = {
       ip: "",
+      secure: false,
       port: 24444,
       prefix: "",
       remarks: "",
@@ -114,7 +118,17 @@ defineExpose({ openDialog });
         <a-input v-model:value="dialog.data.ip" />
       </a-form-item>
 
-      <a-form-item :label="t('TXT_CODE_4a6bf8c6')" name="port" required>
+      <a-form-item :label="t('TXT_CODE_k3k11h2r')" name="secure">
+        <a-typography-paragraph>
+          <a-typography-text type="secondary">
+            {{ t("TXT_CODE_teznq2dx") }}
+          </a-typography-text>
+        </a-typography-paragraph>
+        <a-switch v-model:checked="dialog.data.secure" />
+      </a-form-item>
+
+      
+      <a-form-item v-if="!dialog.data.secure" :label="t('TXT_CODE_4a6bf8c6')" name="port" required>
         <a-typography-paragraph>
           <a-typography-text type="secondary">
             {{ t("TXT_CODE_df455795") }}
@@ -133,10 +147,8 @@ defineExpose({ openDialog });
             </a>
           </a-typography-text>
         </a-typography-paragraph>
-        <a-input
-          v-model:value="dialog.data.apiKey"
-          :placeholder="editMode ? t('TXT_CODE_dc570cf2') : t('TXT_CODE_fe25087f')"
-        />
+        <a-input v-model:value="dialog.data.apiKey"
+          :placeholder="editMode ? t('TXT_CODE_dc570cf2') : t('TXT_CODE_fe25087f')" />
       </a-form-item>
 
       <a-form-item :label="t('TXT_CODE_693f31d6')" name="prefix">
@@ -150,12 +162,7 @@ defineExpose({ openDialog });
     </a-form>
     <template #footer>
       <div class="justify-space-between">
-        <a-popconfirm
-          :title="t('TXT_CODE_fb267b0b')"
-          ok-text="Yes"
-          cancel-text="No"
-          @confirm="dialog.delete()"
-        >
+        <a-popconfirm :title="t('TXT_CODE_fb267b0b')" ok-text="Yes" cancel-text="No" @confirm="dialog.delete()">
           <a-button v-if="editMode" key="delete" danger>{{ t("TXT_CODE_8b937b23") }}</a-button>
         </a-popconfirm>
         <div class="right">

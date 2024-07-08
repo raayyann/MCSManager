@@ -23,7 +23,7 @@ export default class RemoteService {
   public connect(connectOpts?: Partial<SocketOptions & ManagerOptions>) {
     if (connectOpts) this.config.connectOpts = connectOpts;
     // Start the formal connection to the remote Socket program
-    let addr = `ws://${this.config.ip}:${this.config.port}`;
+    let addr = this.config.secure ? `wss://${this.config.ip}` : `ws://${this.config.ip}:${this.config.port}`;
     if (this.config.ip.indexOf("wss://") === 0 || this.config.ip.indexOf("ws://") === 0) {
       addr = `${this.config.ip}:${this.config.port}`;
     }
@@ -63,8 +63,7 @@ export default class RemoteService {
   public async setLanguage(language?: string) {
     if (!language) language = i18next.language;
     logger.info(
-      `${$t("TXT_CODE_daemonInfo.setLanguage")} (${this.config.ip}:${this.config.port}/${
-        this.config.remarks
+      `${$t("TXT_CODE_daemonInfo.setLanguage")} (${this.config.ip}:${this.config.port}/${this.config.remarks
       }) language: ${language}`
     );
     return await new RemoteRequest(this).request("info/setting", {

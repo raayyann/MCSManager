@@ -35,12 +35,12 @@ export const panelStatus = useDefineApi<any, PanelStatus>({
 
 export const loginUser = useDefineApi<
   | {
-      // Post
-      data: {
-        username: string;
-        password: string;
-      };
-    }
+    // Post
+    data: {
+      username: string;
+      password: string;
+    };
+  }
   | undefined,
   // Response
   string
@@ -110,8 +110,8 @@ export const settingInfo = useDefineApi<any, Settings>({
 
 export const setSettingInfo = useDefineApi<
   | {
-      data: Settings;
-    }
+    data: Settings;
+  }
   | undefined,
   string
 >({
@@ -200,6 +200,7 @@ export const editNode = useDefineApi<
     data: {
       apiKey?: string;
       ip?: string;
+      secure?: boolean;
       port?: number;
       remarks?: string;
     };
@@ -214,6 +215,7 @@ export const addNode = useDefineApi<
   {
     data: {
       ip: string;
+      secure: boolean;
       port: number;
       remarks: string;
       apiKey: string;
